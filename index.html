@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOTTU & CO. | Urban Minimalist Kottu Bar</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0c',
+                            dark: '#121216',
+                            card: '#18181e',
+                            border: '#272730',
+                            accent: '#ff5722', // Hot chili orange
+                            gold: '#f59e0b',
+                            amber: '#d97706'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+                        'float': 'float 4s ease-in-out infinite',
+                        'chop': 'chop 0.15s ease-in-out alternate infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(255, 87, 34, 0.2)' },
+                            '50%': { boxShadow: '0 0 35px rgba(255, 87, 34, 0.6)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        chop: {
+                            '0%': { transform: 'rotate(-5deg) translateY(0)' },
+                            '100%': { transform: 'rotate(5deg) translateY(-4px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #272730;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff5722;
+        }
+
+        .glass-panel {
+            background: rgba(24, 24, 30, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 87, 34, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-fire {
+            background: linear-gradient(135deg, #ff8a65 0%, #ff5722 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Audio Wave Visualizer Animation */
+        .bar-anim {
+            animation: bounceHeight 0.6s ease-in-out infinite alternate;
+        }
+        @keyframes bounceHeight {
+            0% { height: 10%; }
+            100% { height: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-zinc-100 font-sans antialiased selection:bg-brand-accent selection:text-white overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-zinc-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-brand-accent/20">
+                    <i class="fa-solid fa-utensils text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-brand-accent transition-colors">KOTTU <span class="text-brand-accent">&</span> CO.</span>
+                    <span class="text-[10px] tracking-widest uppercase text-zinc-400 font-semibold">Street Gourmet</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+                <a href="#about" class="hover:text-brand-accent transition-colors">Our Craft</a>
+                <a href="#menu" class="hover:text-brand-accent transition-colors">Menu</a>
+                <a href="#customizer" class="hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                    <span>Mix Your Kottu</span>
+                    <span class="px-2 py-0.5 text-[10px] bg-brand-accent/20 text-brand-accent font-bold rounded-full border border-brand-accent/30">HOT</span>
+                </a>
+                <a href="#beat-box" class="hover:text-brand-accent transition-colors">Rhythm Synth</a>
+                <a href="#location" class="hover:text-brand-accent transition-colors">Find Us</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-4">
+                <!-- Cart Trigger Button -->
+                <button id="cartBtn" onclick="toggleCart()" class="relative p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white hover:border-brand-accent/50 transition-all duration-200">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartCount" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-accent text-white text-[11px] font-bold flex items-center justify-center scale-0 transition-transform duration-300 shadow-md">0</span>
+                </button>
+
+                <!-- Order Now Quick CTA -->
+                <a href="#menu" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-accent to-amber-600 text-white font-semibold text-sm hover:opacity-95 transition-all shadow-lg shadow-brand-accent/25 hover:shadow-brand-accent/40 active:scale-95">
+                    <span>Order Now</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none">
+                    <i id="menuIcon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-zinc-800 px-6 py-6 space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-zinc-300 hover:text-brand-accent py-2">Our Craft</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block text-zinc-300 hover:text-brand-accent py-2">Menu</a>
+            <a href="#customizer" onclick="toggleMobileMenu()" class="block text-brand-accent font-semibold py-2">Mix Your Kottu (Customizer)</a>
+            <a href="#beat-box" onclick="toggleMobileMenu()" class="block text-zinc-300 hover:text-brand-accent py-2">Rhythm Synth</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="block text-zinc-300 hover:text-brand-accent py-2">Find Us</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand-accent/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column Text Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-medium text-zinc-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Open Today: 4:00 PM – 12:00 AM</span>
+                        <span class="text-zinc-600">|</span>
+                        <span class="text-brand-accent font-semibold"><i class="fa-solid fa-fire-flame-curved mr-1"></i> Fresh Hot Chopping</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.08]">
+                        The Street <br class="hidden sm:inline"/>
+                        <span class="text-gradient-fire">Rhythm & Flavor</span> <br/>
+                        Redefined.
+                    </h1>
+
+                    <p class="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Handcrafted Sri Lankan Kottu chopped live with crisp Godamba roti, rich spiced curries, fresh veggies, and molten melted cheese. Minimal fluff, maximum taste.
+                    </p>
+
+                    <!-- CTAs & Kottu Beat Audio Preview Player -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#customizer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-accent to-amber-600 text-white font-bold text-center hover:opacity-95 transition-all shadow-xl shadow-brand-accent/25 hover:shadow-brand-accent/40 hover:-translate-y-0.5 active:translate-y-0">
+                            Build Your Kottu <i class="fa-solid fa-wand-magic-sparkles ml-2"></i>
+                        </a>
+                        
+                        <!-- Web Audio Blade Beat Trigger -->
+                        <button onclick="playKottuBeatLoop()" id="heroBeatBtn" class="w-full sm:w-auto px-6 py-4 rounded-xl glass-card text-zinc-200 font-semibold flex items-center justify-center gap-3 hover:border-brand-accent/40 transition-all">
+                            <div class="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent">
+                                <i id="heroBeatIcon" class="fa-solid fa-play text-xs"></i>
+                            </div>
+                            <span id="heroBeatText">Listen to Chopping Beat</span>
+                        </button>
+                    </div>
+
+                    <!-- Social Proof Stats -->
+                    <div class="pt-8 border-t border-zinc-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white">100%</div>
+                            <div class="text-xs text-zinc-500 font-medium">Fresh Ingredients</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white">4.9 ★</div>
+                            <div class="text-xs text-zinc-500 font-medium">350+ Gourmet Reviews</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white">&lt; 20m</div>
+                            <div class="text-xs text-zinc-500 font-medium">Avg. Chop & Serve Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Floating Hero Banner / Interactive Visual -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square rounded-3xl glass-card p-4 animate-float border border-white/10 shadow-2xl">
+                        <div class="w-full h-full rounded-2xl overflow-hidden relative group">
+                            <!-- Premium Food Image -->
+                            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Signature Gourmet Kottu" 
+                                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                                 onerror="this.src='https://placehold.co/800x800/18181e/ff5722?text=Gourmet+Kottu'">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                            <!-- Floating Ingredient Tags -->
+                            <div class="absolute top-4 left-4 glass-panel px-3 py-1.5 rounded-full text-xs font-semibold text-white flex items-center gap-2 border border-white/10">
+                                <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+                                Double Cheese Melt
+                            </div>
+
+                            <div class="absolute bottom-6 left-6 right-6 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Signature Pick</span>
+                                    <span class="text-lg font-bold text-white">Rs. 1,650</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">Fiery Roast Chicken Cheese Kottu</h3>
+                                <p class="text-xs text-zinc-300 font-light line-clamp-2">Crispy godamba roti chopped with caramelized onion, green chili, rich roast gravy & molten mozzarella.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-brand-dark border-y border-zinc-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs uppercase tracking-widest font-bold text-brand-accent">The Philosophy</h2>
+                <h3 class="text-3xl sm:text-4xl font-display font-bold text-white">Chopped Fresh. Served Pure.</h3>
+                <p class="text-zinc-400 font-light text-sm sm:text-base">We took Sri Lanka’s favorite street classic and elevated it with precision, fresh spices, zero heavy grease, and unmatched crunch.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 rounded-2xl space-y-4 border border-zinc-800">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-xl">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Hand-Stretched Godamba</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed font-light">Prepared daily using clean, light wheat dough stretched ultra-thin for maximum crispiness when hit by the heavy metal blades.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl space-y-4 border border-zinc-800">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-xl">
+                        <i class="fa-solid fa-pepper-hot"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Slow-Simmered Gravies</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed font-light">No artificial flavor boosters. Our black pork, roast chicken, and coconut veg curries simmer for 6+ hours with whole spices.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl space-y-4 border border-zinc-800">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-xl">
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Gourmet Fusion Choices</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed font-light">From Dolphin cheese blends to Roast Paan crust Kottu, experience traditional street rhythm with high-end culinary craft.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header & Filter Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest font-bold text-brand-accent mb-2">Curated Menu</h2>
+                    <h3 class="text-3xl sm:text-4xl font-display font-bold text-white">Select Your Craft</h3>
+                </div>
+
+                <!-- Menu Category Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="menuFilters">
+                    <button onclick="filterMenu('all')" class="menu-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-accent text-white transition-all">All Items</button>
+                    <button onclick="filterMenu('signature')" class="menu-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all">Signatures</button>
+                    <button onclick="filterMenu('cheese')" class="menu-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all">Cheese & Dolphin</button>
+                    <button onclick="filterMenu('seafood')" class="menu-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all">Seafood</button>
+                    <button onclick="filterMenu('beverage')" class="menu-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all">Coolers</button>
+                </div>
+            </div>
+
+            <!-- Menu Grid Dynamic Injection Container -->
+            <div id="menuContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will inject menu cards dynamically -->
+            </div>
+
+        </div>
+    </section>
+
+    <section id="customizer" class="py-24 bg-brand-dark border-t border-zinc-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-bold">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Interactive Studio</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">Mix Your Kottu</h2>
+                <p class="text-zinc-400 text-sm font-light">Tailor your batch down to the roti type, spice intensity, and cheese blend in real-time.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Customizer Options Form -->
+                <div class="lg:col-span-8 space-y-8 glass-panel p-6 sm:p-8 rounded-3xl border border-zinc-800">
+                    
+                    <!-- Step 1: Base Type -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-3">1. Select Base Roti / Carbohydrate</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="baseOptions">
+                            <!-- Radio option -->
+                            <button type="button" onclick="selectCustomOption('base', 'Godamba Roti', 0)" class="custom-opt-btn active p-4 rounded-xl glass-card text-left border-brand-accent bg-brand-accent/10 text-white font-medium text-sm flex flex-col justify-between h-24">
+                                <span class="font-bold">Godamba Roti</span>
+                                <span class="text-xs text-zinc-400">Classic Flaky Shreds</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('base', 'String Hopper', 100)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">String Hopper</span>
+                                <span class="text-xs text-zinc-400">Light Idiyappam (+Rs. 100)</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('base', 'Roast Paan Crust', 150)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">Roast Paan</span>
+                                <span class="text-xs text-zinc-400">Crunchy Bread Cubes (+Rs. 150)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Protein Selection -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-3">2. Choose Protein & Main</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="proteinOptions">
+                            <button type="button" onclick="selectCustomOption('protein', 'Devilled Roast Chicken', 1100)" class="custom-opt-btn active p-4 rounded-xl glass-card text-left border-brand-accent bg-brand-accent/10 text-white font-medium text-sm flex flex-col justify-between h-24">
+                                <span class="font-bold">Roast Chicken</span>
+                                <span class="text-xs text-zinc-400">Rs. 1,100</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('protein', 'Spiced Black Pork', 1300)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">Black Pork</span>
+                                <span class="text-xs text-zinc-400">Rs. 1,300</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('protein', 'Butter Garlic Seafood', 1450)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">Seafood Mix</span>
+                                <span class="text-xs text-zinc-400">Rs. 1,450</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('protein', 'Double Egg & Veg', 850)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">Egg & Veggie</span>
+                                <span class="text-xs text-zinc-400">Rs. 850</span>
+                            </button>
+                            <button type="button" onclick="selectCustomOption('protein', 'Wild Mushroom Veg', 900)" class="custom-opt-btn p-4 rounded-xl glass-card text-left text-zinc-300 font-medium text-sm flex flex-col justify-between h-24 hover:border-zinc-700">
+                                <span class="font-bold">Mushroom Veg</span>
+                                <span class="text-xs text-zinc-400">Rs. 900</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Spice Level Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400">3. Spice Calibration</label>
+                            <span id="spiceLabel" class="text-xs font-bold text-brand-accent">🌶️🌶️ Sri Lankan Hot</span>
+                        </div>
+                        <input type="range" id="spiceRange" min="1" max="4" value="3" oninput="updateSpiceLevel(this.value)" class="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-brand-accent">
+                        <div class="flex justify-between text-[11px] text-zinc-500 font-medium mt-2">
+                            <span>Mild / Tourist</span>
+                            <span>Medium</span>
+                            <span>SL Hot</span>
+                            <span>Flaming Torch 🔥</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Add-ons & Cheeses -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-3">4. Choose Extra Add-Ons (Optional)</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <label class="glass-card p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:border-zinc-700">
+                                <input type="checkbox" onchange="toggleAddon('Molten Cheese', 300, this)" class="rounded bg-zinc-900 border-zinc-700 text-brand-accent focus:ring-0 w-4 h-4">
+                                <span class="text-xs font-semibold text-zinc-200">Molten Cheese (+Rs. 300)</span>
+                            </label>
+                            <label class="glass-card p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:border-zinc-700">
+                                <input type="checkbox" onchange="toggleAddon('Fried Bullseye Egg', 120, this)" class="rounded bg-zinc-900 border-zinc-700 text-brand-accent focus:ring-0 w-4 h-4">
+                                <span class="text-xs font-semibold text-zinc-200">Fried Egg Top (+Rs. 120)</span>
+                            </label>
+                            <label class="glass-card p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:border-zinc-700">
+                                <input type="checkbox" onchange="toggleAddon('Extra Thick Gravy', 150, this)" class="rounded bg-zinc-900 border-zinc-700 text-brand-accent focus:ring-0 w-4 h-4">
+                                <span class="text-xs font-semibold text-zinc-200">Extra Gravy (+Rs. 150)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Customizer Summary Card -->
+                <div class="lg:col-span-4 sticky top-28">
+                    <div class="glass-panel p-6 rounded-3xl border border-brand-accent/30 space-y-6 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-accent/20 rounded-full blur-2xl"></div>
+
+                        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                            <h3 class="font-display font-bold text-lg text-white">Batch Receipt</h3>
+                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Custom Order</span>
+                        </div>
+
+                        <!-- Summary Item Breakdown -->
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between text-zinc-300">
+                                <span class="text-zinc-400">Base:</span>
+                                <span id="summaryBase" class="font-medium text-white">Godamba Roti</span>
+                            </div>
+                            <div class="flex justify-between text-zinc-300">
+                                <span class="text-zinc-400">Protein:</span>
+                                <span id="summaryProtein" class="font-medium text-white">Roast Chicken</span>
+                            </div>
+                            <div class="flex justify-between text-zinc-300">
+                                <span class="text-zinc-400">Spice Intensity:</span>
+                                <span id="summarySpice" class="font-medium text-brand-accent">SL Hot</span>
+                            </div>
+                            <div class="text-zinc-300 space-y-1">
+                                <span class="text-zinc-400 block text-xs">Add-ons:</span>
+                                <ul id="summaryAddons" class="text-xs text-zinc-300 pl-2 space-y-1 list-disc list-inside">
+                                    <li class="text-zinc-500 italic">None selected</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Price calculation display -->
+                        <div class="pt-4 border-t border-zinc-800 flex items-end justify-between">
+                            <div>
+                                <span class="text-xs text-zinc-400 block">Total Calculated Price</span>
+                                <span id="customTotalPrice" class="text-3xl font-display font-extrabold text-white">Rs. 1,100</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addCustomToCart()" class="w-full py-4 rounded-xl bg-brand-accent text-white font-bold text-sm hover:bg-brand-accent/90 transition-all shadow-lg shadow-brand-accent/30 active:scale-95 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add Custom Kottu to Order</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="beat-box" class="py-20 relative overflow-hidden bg-brand-black border-t border-zinc-800/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
+            <div class="space-y-3">
+                <span class="text-xs uppercase tracking-widest font-bold text-brand-accent">Web Audio Experience</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">The Beat of Kottu Synth</h2>
+                <p class="text-zinc-400 text-sm max-w-lg mx-auto font-light">Tap the virtual iron blades below to synthesize authentic rhythmic sound waves using native browser Web Audio API.</p>
+            </div>
+
+            <!-- Sound Visualizer Bars -->
+            <div class="flex items-center justify-center gap-1.5 h-16 my-4" id="audioVisualizer">
+                <div class="w-2 bg-brand-accent/40 rounded-full h-3"></div>
+                <div class="w-2 bg-brand-accent/60 rounded-full h-8"></div>
+                <div class="w-2 bg-brand-accent rounded-full h-12"></div>
+                <div class="w-2 bg-amber-500 rounded-full h-6"></div>
+                <div class="w-2 bg-brand-accent rounded-full h-14"></div>
+                <div class="w-2 bg-brand-accent/60 rounded-full h-5"></div>
+                <div class="w-2 bg-brand-accent/30 rounded-full h-2"></div>
+            </div>
+
+            <!-- Blade Tap Pads -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <button onclick="playSynthesizedSound('heavy')" class="glass-card p-6 rounded-2xl text-center group hover:border-brand-accent transition-all active:scale-95">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🔪</div>
+                    <div class="font-bold text-sm text-white">Heavy Plate Chop</div>
+                    <div class="text-[10px] text-zinc-500">Low Frequency Impact</div>
+                </button>
+
+                <button onclick="playSynthesizedSound('sharp')" class="glass-card p-6 rounded-2xl text-center group hover:border-brand-accent transition-all active:scale-95">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">⚔️</div>
+                    <div class="font-bold text-sm text-white">Twin Blade Clashing</div>
+                    <div class="text-[10px] text-zinc-500">High Metal Snap</div>
+                </button>
+
+                <button onclick="playSynthesizedSound('sizzle')" class="glass-card p-6 rounded-2xl text-center group hover:border-brand-accent transition-all active:scale-95">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🍳</div>
+                    <div class="font-bold text-sm text-white">Griddle Sizzle</div>
+                    <div class="text-[10px] text-zinc-500">White Noise Burst</div>
+                </button>
+
+                <button onclick="playKottuRhythmSequence()" class="glass-card p-6 rounded-2xl text-center group border-brand-accent/50 bg-brand-accent/10 hover:bg-brand-accent/20 transition-all active:scale-95">
+                    <div class="text-2xl mb-2 group-hover:rotate-12 transition-transform">🥁</div>
+                    <div class="font-bold text-sm text-brand-accent">Auto Beat Sequence</div>
+                    <div class="text-[10px] text-zinc-400">Sri Lankan Street Rhythm</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="py-24 bg-brand-dark border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-accent">Location & Takeaway</span>
+                    <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">Drop By or Order Direct</h2>
+                    <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                        Located right in the heart of Colombo street food district. Open late night for your post-work and midnight kottu cravings.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Address</h4>
+                                <p class="text-xs text-zinc-400 mt-0.5">No. 42, Galle Road, Colombo 03, Sri Lanka</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Opening Hours</h4>
+                                <p class="text-xs text-zinc-400 mt-0.5">Monday – Sunday: 4:00 PM – 12:30 AM Midnight</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Direct Phone & WhatsApp Hotline</h4>
+                                <p class="text-xs text-zinc-400 mt-0.5">+94 77 123 4567 / +94 11 234 5678</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist Simulated Map Graphic -->
+                <div class="glass-panel p-6 rounded-3xl border border-zinc-800 text-center relative space-y-4 overflow-hidden">
+                    <div class="w-full h-80 rounded-2xl bg-zinc-900 relative overflow-hidden flex items-center justify-center border border-zinc-800">
+                        <!-- Abstract map grid styling -->
+                        <div class="absolute inset-0 bg-[radial-gradient(#272730_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+                        
+                        <!-- Map Pin Animation -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-accent/20 border-2 border-brand-accent flex items-center justify-center text-brand-accent animate-bounce shadow-xl">
+                                <i class="fa-solid fa-utensils text-lg"></i>
+                            </div>
+                            <span class="mt-2 px-3 py-1 rounded-full bg-black/80 border border-zinc-700 text-xs font-bold text-white">KOTTU & CO. Colombo</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-zinc-400">
+                        <span>🛵 Pickup & Direct WhatsApp Delivery Available</span>
+                        <a href="https://maps.google.com" target="_blank" class="text-brand-accent font-semibold hover:underline">Open in Google Maps <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-zinc-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent font-bold text-xs">
+                    K
+                </div>
+                <span class="font-display font-bold text-white tracking-tight">KOTTU & CO.</span>
+                <span class="text-zinc-600 text-xs">© 2026 All Rights Reserved.</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-xs text-zinc-500">
+                <a href="#about" class="hover:text-zinc-300">Our Craft</a>
+                <a href="#menu" class="hover:text-zinc-300">Menu</a>
+                <a href="#customizer" class="hover:text-zinc-300">Customizer</a>
+                <a href="#location" class="hover:text-zinc-300">Location</a>
+            </div>
+
+            <div class="flex items-center gap-4 text-zinc-400 text-base">
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+        <!-- Backdrop -->
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+        <!-- Cart Panel Drawer -->
+        <div id="cartDrawer" class="absolute top-0 right-0 bottom-0 w-full max-w-md bg-brand-dark border-l border-zinc-800 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto">
+            
+            <!-- Cart Header -->
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-brand-accent"></i>
+                    <h3 class="font-display font-bold text-lg text-white">Your Order Batch</h3>
+                </div>
+                <button onclick="toggleCart()" class="p-2 text-zinc-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items Scrollable List -->
+            <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-6 space-y-4">
+                <!-- Javascript will inject items here -->
+                <div id="emptyCartMsg" class="text-center py-12 text-zinc-500 space-y-3">
+                    <i class="fa-solid fa-utensils text-3xl text-zinc-700"></i>
+                    <p class="text-sm">Your order is currently empty.<br/>Add some delicious Kottu to start!</p>
+                </div>
+            </div>
+
+            <!-- Cart Checkout Footer -->
+            <div class="border-t border-zinc-800 pt-4 space-y-4">
+                <div class="space-y-1.5 text-sm">
+                    <div class="flex justify-between text-zinc-400">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal" class="text-white font-semibold">Rs. 0</span>
+                    </div>
+                    <div class="flex justify-between text-zinc-400">
+                        <span>Estimated Preparation</span>
+                        <span class="text-emerald-400 font-medium">15 - 20 Mins</span>
+                    </div>
+                    <div class="flex justify-between text-zinc-300 font-bold text-base pt-2 border-t border-zinc-800/60">
+                        <span>Total Due</span>
+                        <span id="cartTotal" class="text-brand-accent text-xl font-display font-bold">Rs. 0</span>
+                    </div>
+                </div>
+
+                <!-- Order Option Tabs -->
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <button id="btnTakeaway" onclick="setDeliveryMode('Takeaway')" class="py-2.5 rounded-lg border border-brand-accent bg-brand-accent/10 text-white font-bold">Pickup / Takeaway</button>
+                    <button id="btnDelivery" onclick="setDeliveryMode('Delivery')" class="py-2.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 font-semibold hover:border-zinc-700">Direct Delivery</button>
+                </div>
+
+                <!-- WhatsApp Direct Order Button -->
+                <button onclick="checkoutToWhatsApp()" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Send Order via WhatsApp</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none glass-panel border border-brand-accent/40 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-brand-accent"></i>
+        <span id="toastMsg" class="text-xs font-semibold">Item added to cart!</span>
+    </div>
+
+    <script>
+        // Menu Data
+        const menuData = [
+            {
+                id: 'm1',
+                name: 'Fiery Roast Chicken Cheese Kottu',
+                category: 'cheese',
+                price: 1650,
+                spice: '🌶️🌶️🌶️ Hot',
+                desc: 'Crispy Godamba roti chopped with caramelized onion, devilled roast chicken, and double mozzarella melt.',
+                image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 'm2',
+                name: 'Signature Sri Lankan Black Pork Kottu',
+                category: 'signature',
+                price: 1550,
+                spice: '🌶️🌶️ Medium-Hot',
+                desc: 'Slow-marinated black pepper pork cubes tossed with eggs, fresh scallions, and thick roasted pork curry gravy.',
+                image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 'm3',
+                name: 'Butter Garlic Seafood Dolphin Kottu',
+                category: 'seafood',
+                price: 1750,
+                spice: '🌶️ Mild Hot',
+                desc: 'Thick cube-cut godamba roti simmered in creamy garlic butter, calamari, prawns, fresh cut veggies & cheese.',
+                image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 'm4',
+                name: 'Roast Paan Crunch Kottu (Beef)',
+                category: 'signature',
+                price: 1600,
+                spice: '🌶️🌶️🌶️ Hot',
+                desc: 'Crispy wood-fired Roast Paan bread cubes chopped with spicy beef devilled roast and fragrant curry leaf oil.',
+                image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 'm5',
+                name: 'Wild Mushroom & Paneer Kottu (Veg)',
+                category: 'signature',
+                price: 1100,
+                spice: '🌶️ Mild',
+                desc: 'Grilled cottage cheese paneer cubes, wild mushrooms, bell peppers, and coconut milk curry reduction.',
+                image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 'm6',
+                name: 'Iced Milo Dinosaur Fusion Cooler',
+                category: 'beverage',
+                price: 550,
+                spice: '🥤 Beverage',
+                desc: 'Rich condensed milk malt shake topped with thick raw Milo powder mountain & crushed ice.',
+                image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80'
+            }
+        ];
+
+        // Global State Variables
+        let cart = [];
+        let deliveryMode = 'Takeaway';
+        
+        // Customizer State
+        let customState = {
+            base: 'Godamba Roti',
+            basePrice: 0,
+            protein: 'Devilled Roast Chicken',
+            proteinPrice: 1100,
+            spice: 'Sri Lankan Hot',
+            addons: []
+        };
+
+        // Render Menu Items
+        function renderMenu(filter = 'all') {
+            const container = document.getElementById('menuContainer');
+            container.innerHTML = '';
+
+            const filteredData = filter === 'all' 
+                ? menuData 
+                : menuData.filter(item => item.category === filter);
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden border border-zinc-800/80 flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/18181e/ff5722?text=Kottu+Item'">
+                            <div class="absolute top-3 left-3 glass-panel px-2.5 py-1 rounded-full text-[11px] font-bold text-white border border-white/10">
+                                ${item.spice}
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-white text-base group-hover:text-brand-accent transition-colors">${item.name}</h4>
+                            </div>
+                            <p class="text-xs text-zinc-400 font-light leading-relaxed line-clamp-2">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-zinc-800/50 mt-4">
+                        <span class="text-lg font-display font-extrabold text-white">Rs. ${item.price.toLocaleString()}</span>
+                        <button onclick="addToCart('${item.id}')" class="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-700 text-zinc-200 text-xs font-semibold hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-all flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
+                            <span>Add</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Filter Menu Categories
+        function filterMenu(cat) {
+            document.querySelectorAll('.menu-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-accent', 'text-white');
+                btn.classList.add('bg-zinc-900', 'text-zinc-400');
+            });
+            event.target.classList.remove('bg-zinc-900', 'text-zinc-400');
+            event.target.classList.add('bg-brand-accent', 'text-white');
+            renderMenu(cat);
+        }
+
+        function selectCustomOption(type, value, price) {
+            if (type === 'base') {
+                customState.base = value;
+                customState.basePrice = price;
+                document.getElementById('summaryBase').innerText = value;
+            } else if (type === 'protein') {
+                customState.protein = value;
+                customState.proteinPrice = price;
+                document.getElementById('summaryProtein').innerText = value;
+            }
+
+            // Update UI Active States
+            const parent = type === 'base' ? document.getElementById('baseOptions') : document.getElementById('proteinOptions');
+            const buttons = parent.querySelectorAll('.custom-opt-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-brand-accent', 'bg-brand-accent/10', 'text-white');
+                btn.classList.add('text-zinc-300');
+            });
+            event.currentTarget.classList.add('border-brand-accent', 'bg-brand-accent/10', 'text-white');
+
+            calculateCustomTotal();
+        }
+
+        function updateSpiceLevel(val) {
+            const labels = {
+                '1': 'Mild / Tourist',
+                '2': 'Medium Spice',
+                '3': 'Sri Lankan Hot',
+                '4': 'Flaming Torch 🔥'
+            };
+            customState.spice = labels[val];
+            document.getElementById('spiceLabel').innerText = '🌶️ ' + labels[val];
+            document.getElementById('summarySpice').innerText = labels[val];
+        }
+
+        function toggleAddon(name, price, checkbox) {
+            if (checkbox.checked) {
+                customState.addons.push({ name, price });
+            } else {
+                customState.addons = customState.addons.filter(a => a.name !== name);
+            }
+
+            // Render Addons Summary
+            const list = document.getElementById('summaryAddons');
+            if (customState.addons.length === 0) {
+                list.innerHTML = `<li class="text-zinc-500 italic">None selected</li>`;
+            } else {
+                list.innerHTML = customState.addons.map(a => `<li class="text-white">${a.name} (+Rs. ${a.price})</li>`).join('');
+            }
+
+            calculateCustomTotal();
+        }
+
+        function calculateCustomTotal() {
+            let addonsTotal = customState.addons.reduce((sum, item) => sum + item.price, 0);
+            let total = customState.proteinPrice + customState.basePrice + addonsTotal;
+            document.getElementById('customTotalPrice').innerText = `Rs. ${total.toLocaleString()}`;
+            return total;
+        }
+
+        function addCustomToCart() {
+            const totalPrice = calculateCustomTotal();
+            const customItem = {
+                id: 'custom-' + Date.now(),
+                name: `Custom Batch: ${customState.protein}`,
+                desc: `Base: ${customState.base} | Spice: ${customState.spice} | Addons: ${customState.addons.map(a => a.name).join(', ') || 'None'}`,
+                price: totalPrice,
+                quantity: 1
+            };
+
+            cart.push(customItem);
+            updateCartUI();
+            showToast('Custom Kottu added to order!');
+            playSynthesizedSound('heavy');
+        }
+
+        function addToCart(itemId) {
+            const item = menuData.find(m => m.id === itemId);
+            if (!item) return;
+
+            const existing = cart.find(c => c.id === itemId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    desc: item.spice
+                });
+            }
+
+            updateCartUI();
+            showToast(`${item.name} added to cart!`);
+            playSynthesizedSound('sharp');
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(c => c.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countEl = document.getElementById('cartCount');
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            countEl.innerText = totalCount;
+            if (totalCount > 0) {
+                countEl.classList.remove('scale-0');
+                countEl.classList.add('scale-100');
+            } else {
+                countEl.classList.remove('scale-100');
+                countEl.classList.add('scale-0');
+            }
+
+            // Render Cart Drawer
+            const container = document.getElementById('cartItemsContainer');
+            const emptyMsg = document.getElementById('emptyCartMsg');
+
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                container.appendChild(emptyMsg);
+                document.getElementById('cartSubtotal').innerText = 'Rs. 0';
+                document.getElementById('cartTotal').innerText = 'Rs. 0';
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = '';
+
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = 'glass-card p-4 rounded-xl border border-zinc-800 flex items-center justify-between gap-3';
+                div.innerHTML = `
+                    <div class="space-y-1 flex-1">
+                        <h5 class="text-xs font-bold text-white">${item.name}</h5>
+                        <p class="text-[10px] text-zinc-400 line-clamp-1">${item.desc}</p>
+                        <span class="text-xs text-brand-accent font-semibold">Rs. ${(item.price * item.quantity).toLocaleString()}</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-zinc-900 border border-zinc-800 rounded-lg p-1">
+                        <button onclick="updateQuantity('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-xs text-zinc-400 hover:text-white">-</button>
+                        <span class="text-xs font-bold text-white px-1">${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-xs text-zinc-400 hover:text-white">+</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('cartSubtotal').innerText = `Rs. ${subtotal.toLocaleString()}`;
+            document.getElementById('cartTotal').innerText = `Rs. ${subtotal.toLocaleString()}`;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            const drawer = document.getElementById('cartDrawer');
+
+            if (modal.classList.contains('pointer-events-none')) {
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modal.classList.add('pointer-events-auto', 'opacity-100');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                modal.classList.add('pointer-events-none', 'opacity-0');
+                modal.classList.remove('pointer-events-auto', 'opacity-100');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function setDeliveryMode(mode) {
+            deliveryMode = mode;
+            const btnT = document.getElementById('btnTakeaway');
+            const btnD = document.getElementById('btnDelivery');
+
+            if (mode === 'Takeaway') {
+                btnT.className = 'py-2.5 rounded-lg border border-brand-accent bg-brand-accent/10 text-white font-bold';
+                btnD.className = 'py-2.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 font-semibold hover:border-zinc-700';
+            } else {
+                btnD.className = 'py-2.5 rounded-lg border border-brand-accent bg-brand-accent/10 text-white font-bold';
+                btnT.className = 'py-2.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 font-semibold hover:border-zinc-700';
+            }
+        }
+
+        // WhatsApp Checkout Direct Link Generator
+        function checkoutToWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Please add items to cart before checkout!');
+                return;
+            }
+
+            let message = `🔥 *NEW KOTTU ORDER - KOTTU & CO.*\n`;
+            message += `---------------------------------\n`;
+            message += `*Option:* ${deliveryMode}\n\n`;
+
+            let grandTotal = 0;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                grandTotal += itemTotal;
+                message += `${index + 1}. *${item.name}* (x${item.quantity})\n`;
+                message += `   ${item.desc}\n`;
+                message += `   Price: Rs. ${itemTotal.toLocaleString()}\n\n`;
+            });
+
+            message += `---------------------------------\n`;
+            message += `*TOTAL DUE: Rs. ${grandTotal.toLocaleString()}*\n\n`;
+            message += `Please confirm my order & send estimated arrival time!`;
+
+            const phone = "94771234567"; // Replace with real restaurant WhatsApp phone number
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+        }
+
+        let audioCtx = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSynthesizedSound(type) {
+            initAudioContext();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'heavy') {
+                // Low pitched griddle impact
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(140, now);
+                osc.frequency.exponentialRampToValueAtTime(30, now + 0.12);
+
+                gain.gain.setValueAtTime(0.6, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.12);
+            } else if (type === 'sharp') {
+                // Metallic twin blade clashing snap
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(1800, now);
+                osc.frequency.exponentialRampToValueAtTime(600, now + 0.05);
+
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'sizzle') {
+                // Hot oil sizzle using noise buffer
+                const bufferSize = audioCtx.sampleRate * 0.2;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+
+                const noise = audioCtx.createBufferSource();
+                noise.buffer = buffer;
+
+                const gain = audioCtx.createGain();
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+                noise.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                noise.start(now);
+            }
+        }
+
+        // Automatic Sri Lankan Kottu Chopping Rhythm Generator
+        let beatInterval = null;
+        let isPlayingBeat = false;
+
+        function playKottuRhythmSequence() {
+            initAudioContext();
+            if (isPlayingBeat) {
+                clearInterval(beatInterval);
+                isPlayingBeat = false;
+                showToast('Rhythm beat stopped.');
+                return;
+            }
+
+            isPlayingBeat = true;
+            showToast('Playing Kottu Blade Rhythm! 🥁');
+
+            let step = 0;
+            // Classic 4-count rhythm: Heavy - Sharp - Sharp - Heavy
+            beatInterval = setInterval(() => {
+                if (step % 4 === 0) {
+                    playSynthesizedSound('heavy');
+                } else if (step % 4 === 1 || step % 4 === 2) {
+                    playSynthesizedSound('sharp');
+                } else {
+                    playSynthesizedSound('sizzle');
+                }
+                step++;
+                if (step > 16) {
+                    clearInterval(beatInterval);
+                    isPlayingBeat = false;
+                }
+            }, 140);
+        }
+
+        function playKottuBeatLoop() {
+            playKottuRhythmSequence();
+            const btnText = document.getElementById('heroBeatText');
+            const btnIcon = document.getElementById('heroBeatIcon');
+            
+            if (isPlayingBeat) {
+                btnText.innerText = 'Chopping Live Beat...';
+                btnIcon.className = 'fa-solid fa-pause text-xs';
+            } else {
+                btnText.innerText = 'Listen to Chopping Beat';
+                btnIcon.className = 'fa-solid fa-play text-xs';
+            }
+        }
+
+        // Toast Notification System
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMenu('all');
+        });
+    </script>
+</body>
+</html>
